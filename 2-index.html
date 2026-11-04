@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Anatomy Cards · General Anatomy</title>
+<style>
+:root{--g:#128c4a;--bg:#fff;--tx:#37352f;--mu:#787774;--bd:#e9e9e7;--hv:#f7f7f5;--ac:#2383e2;--ok:#0f7b6c;--no:#e03e3e}
+@media(prefers-color-scheme:dark){:root{--g:#3ddc84;--bg:#191919;--tx:#e6e6e4;--mu:#9b9a97;--bd:#2f2f2f;--hv:#252525;--ac:#529cca;--ok:#4dab9a;--no:#ff7369}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Manrope,ui-sans-serif,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:720px;margin:0 auto;padding:56px 20px 24px;min-height:80vh}
+h1{font:400 clamp(2.6rem,9vw,4rem)/1.02 "Instrument Serif",Georgia,serif;margin:0 0 14px;letter-spacing:-.02em;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}h1 em{font-style:italic;background:linear-gradient(100deg,var(--ac),#9b6bff,var(--ac));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}@keyframes sh{to{background-position:-200% 0}}@keyframes rise{from{opacity:0;transform:translateY(14px);filter:blur(4px)}}
+.sub{color:var(--mu);margin:0 0 28px;animation:rise .8s .12s cubic-bezier(.2,.8,.2,1) both}.stats{animation:rise .8s .22s cubic-bezier(.2,.8,.2,1) both}
+.stats{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.pill{border:1px solid var(--bd);border-radius:6px;padding:4px 10px;font-size:.85rem;color:var(--mu)}
+.pill b{color:var(--tx)}
+.row{display:flex;align-items:center;gap:14px;padding:12px 10px;border-radius:6px;cursor:pointer;border:0;background:none;width:100%;text-align:left;color:inherit;font:inherit;transition:background .15s}
+.row:hover,.row:focus-visible{background:var(--hv);outline:none}
+.row .em{background:var(--bg);font-size:1.6rem;width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--bd);border-radius:6px}
+.row .t{flex:1}.row .t div{font-weight:600}.row .t small{color:var(--mu)}
+.row .p{font-size:.85rem;color:var(--mu);white-space:nowrap}
+.row.in{animation:in .5s both}.row .p{transition:transform .2s}.row:hover .p{transform:translateX(3px);color:var(--tx)}.row:hover .em{transform:scale(1.06) rotate(-3deg)}.row .em{transition:transform .25s}.scene.ent .card{animation:ent .45s cubic-bezier(.2,.8,.2,1)}@keyframes ent{from{opacity:0;transform:translateX(24px) scale(.97)}}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.back{border:1px solid var(--bd);background:none;color:var(--mu);border-radius:6px;padding:5px 10px;cursor:pointer;font:inherit}
+.back:hover{background:var(--hv)}
+.bar{flex:1;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .4s}
+.cnt{font-size:.85rem;color:var(--mu)}
+.scene{perspective:1200px;margin:10px 0 18px}
+.card{position:relative;height:340px;cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.card.f{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--bd);border-radius:10px;padding:56px 28px 44px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 1px 2px rgba(15,15,15,.06),0 12px 32px -12px rgba(15,15,15,.14);background:var(--bg);overflow:auto}
+.face.b{transform:rotateY(180deg);background:var(--hv);border-left:3px solid var(--ac)}.card:hover .face{border-color:var(--mu)}
+.face .meta{position:absolute;top:18px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.78rem;color:var(--mu);font-weight:600}.cc{border:1px solid var(--bd);border-radius:999px;padding:2px 10px;color:var(--ac);background:var(--bg);font-weight:600;white-space:nowrap}.cc:empty{display:none}.flp{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:.78rem;color:var(--mu);animation:bob 2.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-3px);opacity:.6}}
+.face .tx{font-family:"Instrument Serif",Georgia,serif;font-size:1.7rem;line-height:1.3}
+.face.b .tx{font-family:Manrope,sans-serif;font-size:1.05rem;line-height:1.55}
+.hint{display:none;text-align:center;color:var(--mu);font-size:.85rem}
+.acts{display:flex;gap:10px;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.acts.on{opacity:1;pointer-events:auto}
+.btn{min-width:150px;padding:12px 18px!important;border:1px solid var(--bd);background:none;color:var(--tx);border-radius:6px;padding:9px 18px;cursor:pointer;font:inherit;font-weight:500;transition:background .15s,transform .1s}
+.btn:hover{background:var(--hv)}.btn:active{transform:scale(.97)}
+.btn.ok{border-color:var(--ok);color:var(--ok)}.btn.no{border-color:var(--no);color:var(--no)}
+.btn.pr{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.done{text-align:center;padding:40px 0;animation:in .5s}
+.done .big{font-size:3rem}
+.done h2{margin:6px 0;font:400 2.2rem "Instrument Serif",serif}.done .big{animation:pop .6s cubic-bezier(.3,1.6,.5,1)}@keyframes pop{from{transform:scale(0)}}
+.done .acts{opacity:1;pointer-events:auto;margin-top:18px;flex-wrap:wrap}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--bd);text-align:center;color:var(--mu);font-size:.72rem;animation:rise .8s .5s both}footer b{color:var(--g);font-weight:600;letter-spacing:.02em}.wa{display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;border:1px solid var(--g);color:var(--g);font-weight:600;font-size:.72rem;text-decoration:none;transition:all .2s}.wa:hover{background:var(--g);border-color:var(--g);color:#fff;transform:translateY(-1px)}
+.hide{display:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div id="home">
+  <h1>Complete your General Anatomy in <em>7 days.</em></h1>
+  <p class="sub">Competency-based flashcards for medical students.</p>
+  <div class="stats"><span class="pill">Mastered <b id="sm">0</b>/<b id="st">0</b></span><span class="pill">Best streak <b id="sb">0</b></span></div>
+  <div id="list"></div>
+<footer>
+  <div><b>A Sanidhya Production</b></div>
+  <a class="wa" href="https://chat.whatsapp.com/DmXz07d6BFRA3U08HpXuKf?s=cl&p=a&iam=2" target="_blank" rel="noopener">Join the WhatsApp community</a>
+</footer>
+</div>
+<div id="game" class="hide">
+  <div class="top"><button class="back" id="bk">← Chapters</button><div class="bar"><i id="pb"></i></div><span class="cnt" id="ct"></span></div>
+  <div class="scene"><div class="card" id="cd"><div class="face"><div class="meta"><span id="m1"></span><span class="cc" id="c1"></span></div><div class="tx" id="qq"></div><div class="flp">Tap to reveal ↻</div></div><div class="face b"><div class="meta"><span>Answer</span><span class="cc" id="c2"></span></div><div class="tx" id="aa"></div></div></div></div>
+  <p class="hint" id="hn">Tap the card or press Space to reveal</p>
+  <div class="acts" id="ac"><button class="btn no" id="no">← Review again</button><button class="btn ok" id="ok">Got it →</button></div>
+</div>
+<div id="end" class="hide"></div>
+</main>
+
+<script>
+// To add questions, push more [question, answer] pairs into any chapter's q array.
+const C=[
+{e:"🧭",t:"Introduction",c:"AN1.1",q:[
+["Which plane divides the body into right and left halves?","Sagittal plane. The median (midsagittal) plane divides it into equal halves."],
+["Describe the anatomical position.","Standing erect, facing forward, eyes on the horizon, arms by the sides with palms facing forward, feet together with toes pointing forward."],
+["What does 'proximal' mean for a limb?","Nearer to the root of the limb (point of attachment to the trunk)."],
+["Which plane divides the body into anterior and posterior parts?","Coronal (frontal) plane."],
+["Define extension at a joint.","Movement that increases the angle between the bones forming the joint (straightening)."],
+["Define abduction.","Movement of a limb away from the median plane (for digits, away from the axial line)."]]},
+{e:"🦴",t:"Skeleton",c:"AN1.2 · 2.1 · 2.2 · 2.3 · 2.4",q:[
+["Composition of bone?","About 30% organic (collagen, osteoid) and 70% inorganic (calcium hydroxyapatite)."],
+["Special features of a sesamoid bone?","Develops in a tendon, ossifies after birth, reduces friction, changes pull direction, protects tendon. Patella is the largest."],
+["Name the parts of a young growing long bone.","Diaphysis (shaft), metaphysis, epiphysis and epiphyseal plate (physis)."],
+["Direction of nutrient foramina in humerus and femur?","'To the elbow I go, from the knee I flee': away from the growing end."],
+["Which law of ossification involves fusion order?","The centre that appears first fuses last (exception: fibula)."],
+["Name the three types of cartilage. Which one lacks a perichondrium?","Hyaline, elastic, fibrocartilage. Fibrocartilage lacks perichondrium."]]},
+{e:"🔗",t:"Joints",c:"AN2.5 · 2.6",q:[
+["Name the three types of fibrous joints with one example each.","Suture (skull), syndesmosis (inferior tibiofibular), gomphosis (tooth in socket)."],
+["Primary cartilaginous joint: definition and example.","Bones united by hyaline cartilage (synchondrosis). E.g. epiphyseal plate, 1st sternocostal joint."],
+["Secondary cartilaginous joint: example?","Symphysis, united by fibrocartilage. E.g. pubic symphysis, intervertebral discs."],
+["State Hilton's law.","Nerve supplying a joint also supplies the muscles moving it and the skin over their insertions."],
+["Give two examples of hinge joints.","Elbow joint and interphalangeal joints."],
+["Give two examples of ball-and-socket joints.","Shoulder and hip joints."]]},
+{e:"💪",t:"Muscles",c:"AN3.1 · 3.2 · 3.3 · 7.5 · 7.6",q:[
+["Differentiate a tendon from an aponeurosis.","Tendon is a cord-like attachment (tendo calcaneus); aponeurosis is a flat sheet (external oblique aponeurosis)."],
+["Classify muscle tissue by structure and action.","Skeletal (striated, voluntary), cardiac (striated, involuntary), smooth (non-striated, involuntary)."],
+["What is a shunt muscle? Example?","Insertion is close to the joint; stabilises the joint. E.g. brachioradialis."],
+["What is a spurt muscle? Example?","Insertion is far from the joint; produces movement. E.g. biceps brachii, brachialis."],
+["Define a motor unit.","One motor neuron plus all the muscle fibres it supplies."],
+["Effects of loss of innervation of a muscle?","Flaccid paralysis, loss of reflexes and tone, progressive atrophy and fibrillation."]]},
+{e:"❤️",t:"Circulatory System",c:"AN5.2 – 5.8",q:[
+["Differentiate pulmonary from systemic circulation.","Pulmonary: right ventricle → lungs → left atrium. Systemic: left ventricle → body → right atrium."],
+["Function of elastic arteries? Examples?","Act as pressure reservoirs, smoothing pulsatile flow. Aorta and pulmonary trunk."],
+["Define a portal system with examples.","A vein connecting two capillary beds. Hepatic portal system, hypophyseal portal system."],
+["What is an end artery? Consequence of blockage?","Artery without anastomoses; blockage causes infarction. E.g. central artery of retina."],
+["Role of precapillary sphincters and AV anastomoses?","Sphincters regulate flow into capillary beds; AV anastomoses shunt blood past capillaries (thermoregulation)."],
+["Define thrombosis, infarction, aneurysm.","Thrombosis: clot in a vessel. Infarction: tissue death from ischaemia. Aneurysm: localised abnormal dilatation of a vessel."]]},
+{e:"💧",t:"Lymphatic System",c:"AN6.1 · 6.2 · 6.3",q:[
+["List the components of the lymphatic system.","Lymph, lymph vessels, lymph nodes, lymphoid organs (spleen, thymus, tonsils) and diffuse lymphoid tissue."],
+["Main functions of the lymphatic system?","Returns tissue fluid and proteins, absorbs fat (lacteals), immune defence."],
+["Structure of a lymph capillary?","Blind-ended, single endothelial layer, incomplete basement membrane, anchoring filaments."],
+["What drives lymph flow?","Skeletal muscle pump, arterial pulsation, respiratory movements, and valves ensuring one-way flow."],
+["Define lymphoedema and give a cause.","Swelling from lymph accumulation due to obstruction. E.g. filariasis, axillary clearance."],
+["Typical routes of tumour spread: carcinoma vs sarcoma?","Carcinomas spread mainly via lymphatics; sarcomas mainly via blood."]]},
+{e:"🧠",t:"Nervous System",c:"AN4.1 · 7.1 – 7.4 · 7.7",q:[
+["Divisions of the nervous system?","CNS (brain, spinal cord), PNS (12 cranial and 31 spinal nerve pairs) and autonomic nervous system."],
+["Name the CNS glial cells.","Astrocytes, oligodendrocytes, microglia, ependymal cells. (Schwann cells in PNS.)"],
+["Classify neurons by number of neurites. Where are pseudounipolar neurons?","Unipolar, bipolar, pseudounipolar, multipolar. Pseudounipolar: dorsal root ganglia."],
+["Types of synapses by site?","Axodendritic, axosomatic, axoaxonic (also dendrodendritic); chemical or electrical."],
+["Structure of a typical spinal nerve?","Dorsal (sensory) and ventral (motor) roots join; dorsal root ganglion; divides into dorsal and ventral rami."],
+["Define a dermatome. Give landmarks.","Skin area supplied by one spinal segment. C6 thumb, T4 nipple, T10 umbilicus."]]},
+{e:"🧴",t:"Skin and Fasciae",c:"AN4.2 – 4.5",q:[
+["Two main layers of skin?","Epidermis (keratinised stratified squamous epithelium) and dermis."],
+["Layers of epidermis, superficial to deep?","Corneum, lucidum, granulosum, spinosum, basale."],
+["Name the appendages of skin.","Hair, nails, sweat glands, sebaceous glands."],
+["What are Langer's lines? Why do they matter?","Cleavage lines of skin. Incisions along them heal with less scarring."],
+["Functions of superficial fascia?","Fat storage, insulation, passage for vessels and nerves, skin mobility."],
+["Name modifications of deep fascia.","Retinacula, intermuscular septa, fascial sheaths, aponeuroses, ligaments, e.g. iliotibial tract."]]},
+{e:"🧵",t:"Connective Tissue, Ligaments and Raphe",c:"Chapter 9",q:[
+["Constituent elements of connective tissue?","Cells, fibres and ground substance."],
+["Name the types of connective tissue fibres.","Collagen, elastic and reticular fibres."],
+["Name connective tissue cells.","Fibroblasts, macrophages, mast cells, plasma cells, adipocytes."],
+["What is a ligament?","Dense regular connective tissue band joining bone to bone, stabilising a joint."],
+["What is a raphe? Example?","Fibrous seam formed by interdigitating fibres. E.g. pterygomandibular raphe, linea alba."],
+["Clinical: which defects affect connective tissue?","Marfan syndrome (fibrillin defect); scurvy (vitamin C deficiency impairs collagen)."]]},
+{e:"🫁",t:"Respiratory System",c:"AN24.1 · 24.2 · 24.3",q:[
+["Extent of pleura: surface marking of the lower limit in the midaxillary line?","10th rib (8th rib in midclavicular line, 12th at the vertebral column)."],
+["Name the pleural recesses.","Costodiaphragmatic and costomediastinal recesses. The costodiaphragmatic is the most clinically important (fluid collects here)."],
+["Nerve supply of pleura?","Parietal: intercostal nerves (costal), phrenic (mediastinal, diaphragmatic). Visceral: autonomic (pulmonary plexus), insensitive to pain."],
+["How do you identify the side of a lung?","Right has 3 lobes, 2 fissures; left has 2 lobes, 1 oblique fissure, cardiac notch and lingula."],
+["Define a bronchopulmonary segment.","Functional unit of lung supplied by a tertiary bronchus and segmental artery; pyramidal, apex toward hilum, surgically resectable."],
+["Why do foreign bodies enter the right main bronchus more often?","It is wider, shorter and more vertical than the left."]]},
+{e:"🍽️",t:"Digestive System",c:"AN47.5",q:[
+["Layers of the alimentary canal, from lumen outwards?","Mucosa, submucosa, muscularis externa, serosa (or adventitia)."],
+["Where is Auerbach's (myenteric) plexus located?","Between the circular and longitudinal muscle layers; controls motility. Meissner's plexus is in the submucosa."],
+["Peritoneal relation and blood supply of the liver?","Mostly intraperitoneal with a bare area. Dual supply: portal vein (75%) and hepatic artery (25%)."],
+["Parts of the extrahepatic biliary apparatus?","Right and left hepatic ducts, common hepatic duct, cystic duct, gallbladder, bile duct."],
+["Which artery is the main supply of the spleen? What does it lie behind?","Splenic artery (coeliac trunk). Spleen lies in the left hypochondrium behind the 9th to 11th ribs."],
+["Name the parts of the pancreas.","Head (with uncinate process), neck, body, tail."]]},
+{e:"👁️",t:"Sensory Organs",c:"AN37.1 · 39.1 · 40.1 – 40.3 · 41.1",q:[
+["Nerve supply of the tongue: general sensation and taste (anterior two thirds)?","Lingual nerve (general); chorda tympani (taste, facial nerve)."],
+["Motor supply of the tongue muscles?","All by hypoglossal nerve except palatoglossus (pharyngeal plexus, vagus)."],
+["Blood supply of the lateral nasal wall and septum?","Branches of sphenopalatine, anterior and posterior ethmoidal, greater palatine, superior labial arteries. Kiesselbach's plexus is the site of epistaxis."],
+["Parts of the external ear and its nerve supply?","Auricle, external acoustic meatus, tympanic membrane. Auriculotemporal, great auricular, lesser occipital, vagus (Arnold's nerve)."],
+["Boundaries of the middle ear: contents?","Ossicles (malleus, incus, stapes), tensor tympani and stapedius, chorda tympani, tympanic plexus."],
+["Name the three layers of the eyeball.","Fibrous (sclera, cornea), vascular (choroid, ciliary body, iris), nervous (retina)."]]},
+{e:"🧪",t:"Endocrine System",c:"AN35.2",q:[
+["Which gland is the 'master gland' and how is it controlled?","Pituitary; controlled by the hypothalamus via the hypophyseal portal system and neural tract."],
+["Location and parts of the thyroid gland?","Front of the neck at C5–T1; two lobes joined by an isthmus over tracheal rings 2–4."],
+["Blood supply of the thyroid?","Superior thyroid artery (external carotid), inferior thyroid artery (thyrocervical trunk), thyroidea ima (occasional)."],
+["Number and location of parathyroid glands?","Usually four, behind the lobes of thyroid; produce parathormone."],
+["Name the zones of the adrenal cortex.","Glomerulosa, fasciculata, reticularis (GFR). Medulla secretes catecholamines."],
+["What does the juxtaglomerular apparatus produce?","Renin; regulates blood pressure."]]},
+{e:"🫘",t:"Urinary System",c:"AN47.5",q:[
+["Components of the urinary system?","Two kidneys, two ureters, urinary bladder, urethra."],
+["Vertebral level and position of the kidneys?","T12 to L3; right kidney slightly lower due to the liver."],
+["Blood supply of the kidney?","Renal artery from the abdominal aorta, end-artery-like segmental branches; renal vein drains to IVC."],
+["Name the parts of a nephron.","Renal corpuscle (glomerulus, Bowman's capsule), PCT, loop of Henle, DCT, collecting duct."],
+["Describe the three constrictions of the ureter.","Pelviureteric junction, crossing the pelvic brim, and vesicoureteric junction (common sites for stones)."],
+["Where does renal pain refer to?","Loin to groin (T10–L1 dermatomes)."]]},
+{e:"🧬",t:"Reproductive System",c:"AN46.1 – 46.3 · 48.2",q:[
+["Coverings of the testis from outside inwards?","Skin, dartos, external spermatic fascia, cremasteric fascia, internal spermatic fascia, tunica vaginalis."],
+["Blood supply and lymphatic drainage of the testis?","Testicular artery from the aorta; drains to para-aortic nodes."],
+["Parts of the epididymis?","Head, body and tail."],
+["Components of the penis?","Two corpora cavernosa and one corpus spongiosum, with the urethra in the latter."],
+["Blood supply of the uterus?","Uterine artery (internal iliac) with anastomosis from the ovarian artery."],
+["Which ligament holds the uterus up and prevents prolapse?","Transverse cervical (cardinal / Mackenrodt's) ligament is the main support."]]},
+{e:"☢️",t:"Principles of Radiography",c:"Chapter 16",q:[
+["Who discovered X-rays and when?","Wilhelm Röntgen, 1895."],
+["Name key properties of X-rays.","Invisible, travel in straight lines, penetrate matter, cause fluorescence, ionise and affect photographic film."],
+["What makes bone appear white on an X-ray?","It absorbs more X-rays (radiopaque); air is black (radiolucent)."],
+["Name contrast media used in barium studies.","Barium sulphate for the GI tract; iodinated contrast for vessels and urinary tract."],
+["Which imaging uses magnetic fields and no ionising radiation?","MRI."],
+["What does PET detect?","Metabolic activity using positron-emitting tracers such as FDG."]]},
+{e:"🔬",t:"Genetics",c:"Chapter 17",q:[
+["How many chromosomes in a human somatic cell?","46 (22 pairs of autosomes + 1 pair of sex chromosomes)."],
+["Define a gene.","A segment of DNA coding for a specific protein or RNA."],
+["Define karyotype.","The complete set of chromosomes of a cell arranged by size and banding."],
+["Cause of Down syndrome?","Trisomy 21, usually due to nondisjunction."],
+["Mode of inheritance of mitochondrial DNA?","Maternal inheritance."],
+["Name two prenatal diagnostic techniques.","Amniocentesis and chorionic villus sampling."]]}
+];
+const K={0:Array(6).fill("AN1.1"),1:["AN1.2","AN2.3","AN2.1","AN2.1","AN2.2","AN2.4"],2:["AN2.5","AN2.5","AN2.5","AN2.6","AN2.5","AN2.5"],3:["AN3.2","AN3.1","AN3.3","AN3.3","AN7.5","AN7.6"],4:["AN5.2","AN5.4","AN5.5","AN5.6","AN5.7","AN5.8"],5:["AN6.1","AN6.1","AN6.2","AN6.2","AN6.3","AN6.3"],6:["AN7.1","AN7.2","AN7.3","AN7.7","AN7.4","AN4.1"],7:["AN4.2","AN4.2","AN4.2","AN4.5","AN4.3","AN4.4"],9:["AN24.1","AN24.1","AN24.1","AN24.2","AN24.3","AN24.2"],10:Array(6).fill("AN47.5"),11:["AN39.1","AN39.1","AN37.1","AN40.1","AN40.2","AN41.1"],12:["","AN35.2","AN35.2","","",""],13:Array(6).fill("AN47.5"),14:["AN46.1","AN46.1","AN46.2","AN46.3","AN48.2","AN48.2"]};
+const X={
+0:[["Which plane divides the body into upper and lower parts?","Transverse (horizontal) plane.","AN1.1"],
+["Define 'superficial' and 'deep'.","Nearer to, or farther from, the surface of the body.","AN1.1"],
+["Define 'medial' and 'lateral'.","Medial: nearer the median plane. Lateral: farther from it.","AN1.1"],
+["Ipsilateral vs contralateral?","Ipsilateral: same side of the body. Contralateral: opposite side.","AN1.1"],
+["Define supine and prone.","Supine: lying face up. Prone: lying face down.","AN1.1"],
+["Define flexion with an example.","Movement that decreases the angle between bones, e.g. bending the elbow.","AN1.1"],
+["Define adduction.","Movement of a limb toward the median plane.","AN1.1"],
+["What is circumduction?","Sequential flexion, abduction, extension and adduction, so the limb traces a cone.","AN1.1"],
+["Define medial rotation.","Turning the anterior surface of a limb toward the median plane.","AN1.1"],
+["Pronation vs supination of the forearm?","Pronation: palm faces backward (radius crosses ulna). Supination: palm faces forward.","AN1.1"],
+["Define dorsiflexion and plantar flexion.","Ankle movements: toes up (dorsiflexion) and toes down (plantar flexion).","AN1.1"],
+["Define inversion and eversion of the foot.","Inversion: sole turns medially. Eversion: sole turns laterally.","AN1.1"],
+["What is opposition of the thumb?","Movement bringing the thumb pad to touch the pads of other fingers.","AN1.1"],
+["Give synonyms: anterior and posterior.","Ventral and dorsal (in humans, front and back).","AN1.1"]],
+1:[["Classify bones by shape with examples.","Long (femur), short (carpals), flat (scapula), irregular (vertebra), sesamoid (patella), pneumatic (maxilla).","AN1.2"],
+["Name the cells of bone.","Osteoprogenitor cells, osteoblasts, osteocytes, osteoclasts.","AN1.2"],
+["Red vs yellow bone marrow?","Red: haemopoietic. Yellow: fat-rich, inactive. In adults red marrow persists in vertebrae, ribs, sternum, pelvis.","AN1.2"],
+["Compact vs cancellous bone?","Compact: dense outer layer with Haversian systems. Cancellous: spongy trabeculae holding marrow.","AN2.1"],
+["Intramembranous vs endochondral ossification?","Intramembranous: directly in membrane (skull vault, clavicle). Endochondral: via cartilage model (long bones).","AN2.2"],
+["Blood supply of a long bone?","Nutrient artery, periosteal, metaphyseal and epiphyseal arteries.","AN2.1"],
+["Pressure vs traction epiphysis?","Pressure transmits weight (head of femur). Traction is formed by muscle pull (tubercles, trochanters).","AN2.2"],
+["Where is hyaline cartilage found?","Articular surfaces, costal cartilages, tracheal rings, nose, larynx.","AN2.4"],
+["Where is elastic cartilage found?","Auricle, epiglottis, external acoustic meatus, auditory tube.","AN2.4"],
+["Where is fibrocartilage found?","Intervertebral discs, menisci, pubic symphysis, glenoid labrum.","AN2.4"],
+["Which bone features help age and sex estimation?","Age: epiphyseal fusion and teeth. Sex: pelvis and skull.","AN2.2"],
+["Define periosteum and endosteum.","Periosteum: fibrous sheath covering the outer bone. Endosteum: lining of the medullary cavity.","AN2.1"],
+["Which part of a long bone grows in length?","Epiphyseal plate (growth plate) by endochondral ossification.","AN2.2"],
+["Function of bone (name four).","Support, protection, movement (levers), mineral storage, haemopoiesis.","AN1.2"]],
+2:[["Classify joints structurally.","Fibrous, cartilaginous, synovial.","AN2.5"],
+["Essential features of a synovial joint?","Articular cartilage, joint capsule, synovial membrane, synovial fluid, joint cavity.","AN2.5"],
+["Functions of synovial fluid?","Lubrication, nutrition of articular cartilage, shock absorption.","AN2.5"],
+["List the types of synovial joints.","Plane, hinge, pivot, condylar, ellipsoid, saddle, ball-and-socket.","AN2.5"],
+["Give an example of a pivot joint.","Median atlantoaxial and superior radioulnar joints.","AN2.5"],
+["Give an example of a saddle joint.","First carpometacarpal joint.","AN2.5"],
+["Give an example of an ellipsoid joint.","Wrist (radiocarpal) joint.","AN2.5"],
+["Give examples of condylar (bicondylar) joints.","Knee and temporomandibular joints.","AN2.5"],
+["Give examples of plane joints.","Intercarpal and acromioclavicular joints.","AN2.5"],
+["Which synovial joints contain an articular disc or menisci?","TMJ, sternoclavicular, inferior radioulnar, and knee (menisci).","AN2.5"],
+["Classify ligaments of a synovial joint.","Capsular, extracapsular, intracapsular (e.g. cruciate ligaments).","AN2.5"],
+["Types of sutures with examples.","Serrate (sagittal), squamous (temporoparietal), plane (internasal).","AN2.5"],
+["Example of a syndesmosis?","Inferior tibiofibular joint.","AN2.5"],
+["Which parts of a joint are most sensitive?","Capsule and ligaments (pain, proprioception). Synovial membrane is relatively insensitive.","AN2.6"]],
+3:[["Parts of a skeletal muscle?","Origin, fleshy belly, insertion; connected via tendons or aponeuroses.","AN3.2"],
+["Define origin and insertion.","Origin: relatively fixed attachment. Insertion: more mobile attachment.","AN3.2"],
+["Structural hierarchy of striated muscle?","Muscle, fascicle, fibre, myofibril, sarcomere (actin and myosin filaments).","AN3.1"],
+["Classify muscles by fibre arrangement.","Strap, fusiform, triangular, unipennate, bipennate, multipennate, circumpennate.","AN3.1"],
+["Advantage of pennate muscles?","More fibres per volume give greater force, with a shorter range of movement.","AN3.1"],
+["Examples of unipennate, bipennate, multipennate muscles?","Flexor pollicis longus, rectus femoris, deltoid.","AN3.1"],
+["Define prime mover, antagonist, synergist, fixator.","Prime mover: main acting muscle. Antagonist: opposes. Synergist: assists. Fixator: stabilises origin.","AN3.3"],
+["Sensory receptors in skeletal muscle?","Muscle spindles (stretch) and Golgi tendon organs (tension).","AN7.5"],
+["Motor innervation of muscle fibres?","Alpha motor neurons supply extrafusal fibres; gamma motor neurons supply intrafusal fibres.","AN7.5"],
+["Principle of muscle innervation by segments?","A muscle is supplied by several spinal segments; nerve enters near the neurovascular hilum.","AN7.5"],
+["What is Wallerian degeneration?","Degeneration of the distal axon segment after nerve injury.","AN7.6"],
+["Where is smooth muscle found and how controlled?","Walls of viscera and vessels; involuntary, by autonomic nerves.","AN3.1"],
+["Features of cardiac muscle?","Striated, branched, central nucleus, intercalated discs, involuntary.","AN3.1"],
+["How are muscles named? Give examples.","By shape (deltoid), action (flexor), site (tibialis), attachments (sternocleidomastoid), heads (biceps).","AN3.2"]]};
+C.forEach((c,n)=>{if(X[n])c.q.push(...X[n]);c.q.forEach((q,k)=>{if(q[2]===undefined)q[2]=(K[n]||[])[k]||""})});
+const $=id=>document.getElementById(id);
+let S={m:{},b:0},cur=null,deck=[],i=0,streak=0,done=0;
+try{S=Object.assign(S,JSON.parse(localStorage.getItem("anat")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("anat",JSON.stringify(S))}catch(e){}};
+const show=v=>["home","game","end"].forEach(x=>$(x).classList.toggle("hide",x!==v));
+function home(){
+  show("home");let tot=0,got=0;
+  $("list").innerHTML=C.map((c,n)=>{const m=(S.m[n]||[]).length;tot+=c.q.length;got+=m;
+    return `<button class="row in" style="animation-delay:${n*45}ms" data-n="${n}"><span class="em">${c.e}</span><span class="t"><div>${n+1}. ${c.t}</div><small>${c.q.length} cards</small></span><span class="p">${m}/${c.q.length}</span></button>`}).join("");
+  $("sm").textContent=got;$("st").textContent=tot;$("sb").textContent=S.b;
+  document.querySelectorAll(".row").forEach(r=>r.onclick=()=>start(+r.dataset.n));
+}
+function start(n,only){
+  cur=n;const all=C[n].q.map((q,k)=>k);
+  deck=(only||all).slice().sort(()=>Math.random()-.5);i=0;streak=0;done=0;
+  show("game");draw();
+}
+function draw(){
+  if(i>=deck.length)return finish();
+  const q=C[cur].q[deck[i]];$("cd").classList.remove("f");const sc=document.querySelector(".scene");sc.classList.remove("ent");void sc.offsetWidth;sc.classList.add("ent");
+  $("qq").textContent=q[0];$("m1").textContent=C[cur].t;$("c1").textContent=$("c2").textContent=q[2]||"";$("aa").textContent=q[1];
+  $("ct").textContent=(i+1)+"/"+deck.length;$("pb").style.width=(i/deck.length*100)+"%";
+  $("ac").classList.remove("on");
+}
+function flip(){const c=$("cd");c.classList.toggle("f");const f=c.classList.contains("f");$("ac").classList.toggle("on",f);0}
+function ans(good){
+  if(!$("cd").classList.contains("f"))return;
+  const k=deck[i];S.m[cur]=S.m[cur]||[];
+  if(good){if(!S.m[cur].includes(k))S.m[cur].push(k);streak++;done++;S.b=Math.max(S.b,streak)}
+  else{streak=0;deck.push(k)}
+  save();i++;draw();
+}
+function finish(){
+  const n=C[cur].q.length,m=(S.m[cur]||[]).length,full=m===n;
+  $("pb").style.width="100%";show("end");
+  $("end").innerHTML=`<div class="done"><div class="big">${full?"🎉":"📚"}</div><h2>${full?"Chapter mastered":"Round complete"}</h2><p class="sub">${C[cur].t}: ${m} of ${n} mastered · best streak ${S.b}</p><div class="acts"><button class="btn" id="e1">All chapters</button><button class="btn pr" id="e2">${full?"Practise again":"Study unmastered"}</button></div></div>`;
+  $("e1").onclick=home;
+  $("e2").onclick=()=>{const g=S.m[cur]||[],un=C[cur].q.map((q,k)=>k).filter(k=>!g.includes(k));if(full)S.m[cur]=[];start(cur,full||!un.length?null:un)};
+}
+$("cd").onclick=flip;$("ok").onclick=()=>ans(true);$("no").onclick=()=>ans(false);$("bk").onclick=home;
+document.addEventListener("keydown",e=>{if($("game").classList.contains("hide"))return;
+  if(e.code==="Space"){e.preventDefault();flip()}
+  if(e.key==="ArrowRight")ans(true);if(e.key==="ArrowLeft")ans(false)});
+home();
+</script>
+</body>
+</html>
